@@ -68,9 +68,92 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $response = json_decode($response);
 $answer = $response->answers[0]->message;
+$flag=$response->answers[0]->flags[0];
 
-//Sending back to answer to AJAX
-echo $answer;
+
+if($flag==='no-results' && $message!=='force'){
+    $contador=$_COOKIE["Contador"]++;
+    intval($contador);
+    $contador=$contador+1;
+    setcookie("Contador", $contador, time()+3600);
+}
+if($_COOKIE["Contador"]===2){
+//* I'm not very sure how to call all STAR WARS characters since i dont know the tables names.
+    //This code should work if i knew what table to call
+/*
+ *     $SwapiAPIURL='https://inbenta-graphql-swapi-prod.herokuapp.com/api';
+    $headersPOSTSwapi = [
+        'Content-Type: application/json',
+    ];
+    $bodyConversationSwapi = json_encode([
+            "query" => "allCharacters(first: 10){characters{name}}" <------- HERE I SHOULD PUT THE TABLES NAME
+        ]
+    );
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $SwapiAPIURL,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => $headersPOSTSwapi,
+        CURLOPT_POSTFIELDS => $bodyConversationSwapi,
+    ]);
+    $response = curl_exec($curl);
+    $response = json_decode($response);
+   **Maybe in te response i should pick the correct answer...
+    $answer=$response
+ */
+    //This is some temporally answer...
+    $answer='Darth Vader
+    Luke Skywalker
+    Obi-Wan Kenobi
+    Leia Organa
+    Han Solo
+    Yoda...';
+    setcookie("Contador", 0, time()+3600);
+    echo $answer;
+}
+elseif($message==='force'){
+    //* I'm not very sure how to call all STAR WARS films since i dont know the tables names.
+    //This code should work if i knew what table to call
+    /*
+     *     $SwapiAPIURL='https://inbenta-graphql-swapi-prod.herokuapp.com/api';
+        $headersPOSTSwapi = [
+            'Content-Type: application/json',
+        ];
+        $bodyConversationSwapi = json_encode([
+                "query" => "allFilms(first: 10){films{name}}" <------- HERE I SHOULD PUT THE TABLES NAME
+            ]
+        );
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $SwapiAPIURL,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => $headersPOSTSwapi,
+            CURLOPT_POSTFIELDS => $bodyConversationSwapi,
+        ]);
+        $response = curl_exec($curl);
+        $response = json_decode($response);
+       **Maybe in te response i should pick the correct answer...
+        $answer=$response
+     */
+    //This is some temporally answer...
+    $answer='Episode I – The Phantom Menace
+    Episode II – Attack of the Clones
+    Episode III – Revenge of the Sith
+    Episode IV – A New Hope
+    Episode V – The Empire Strikes Back
+    Episode VI – Return of the Jedi...';
+    echo $answer;
+}
+else{
+    echo $answer;
+}
+
+
+
+
+
 
 
 

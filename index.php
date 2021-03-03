@@ -1,3 +1,7 @@
+<?php
+    setcookie("Contador", 0, time()+3600);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
