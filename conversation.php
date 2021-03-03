@@ -72,12 +72,12 @@ $flag=$response->answers[0]->flags[0];
 
 
 if($flag==='no-results' && $message!=='force'){
-    $contador=$_COOKIE["Contador"]++;
-    intval($contador);
-    $contador=$contador+1;
-    setcookie("Contador", $contador, time()+3600);
+    $counter=$_COOKIE["Counter"]++;
+    intval($counter);
+    $counter=$counter+1;
+    setcookie("Counter", $counter, time()+3600);
 }
-if($_COOKIE["Contador"]===2){
+if($_COOKIE["Counter"]===2){
 //* I'm not very sure how to call all STAR WARS characters since i dont know the tables names.
     //This code should work if i knew what table to call
 /*
@@ -109,7 +109,7 @@ if($_COOKIE["Contador"]===2){
     Leia Organa
     Han Solo
     Yoda...';
-    setcookie("Contador", 0, time()+3600);
+    setcookie("Counter", 0, time()+3600);
     echo $answer;
 }
 elseif($message==='force'){

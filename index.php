@@ -1,5 +1,5 @@
 <?php
-    setcookie("Contador", 0, time()+3600);
+    setcookie("Counter", 0, time()+3600);
 ?>
 
 <!DOCTYPE html>
